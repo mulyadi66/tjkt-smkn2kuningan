@@ -30,3 +30,6 @@ Thumbs.db
 
 # Other projects
 tjktscada-react/
+
+.vercel
+.env*

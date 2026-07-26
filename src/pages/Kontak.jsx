@@ -56,14 +56,14 @@ export default function Kontak() {
                   {
                     icon: MapPin,
                     title: 'Alamat',
-                    content: 'Jl. Pramuka No. 1, Kuningan, Jawa Barat 45511',
+                    content: 'Jl. Raya Sukamulya No.77, Sukamulya, Kec. Cigugur, Kabupaten Kuningan, Jawa Barat 45552',
                     sub: 'SMK Negeri 2 Kuningan'
                   },
                   {
                     icon: Phone,
                     title: 'Telepon',
-                    content: '(0232) 871234',
-                    sub: 'Senin - Sabtu, 07:00 - 16:00'
+                    content: '(0232) 872930',
+                    sub: 'Senin - Jumat, 06:30 - 15:00'
                   },
                   {
                     icon: Mail,
@@ -74,8 +74,8 @@ export default function Kontak() {
                   {
                     icon: Clock,
                     title: 'Jam Operasional',
-                    content: 'Senin - Sabtu',
-                    sub: '07:00 - 16:00 WIB'
+                    content: 'Senin - Jumat',
+                    sub: '06:30 - 15:00 WIB'
                   }
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4">
@@ -209,7 +209,7 @@ export default function Kontak() {
           <div className="text-center">
             <MapPin className="w-12 h-12 text-primary-600 mx-auto mb-4" />
             <p className="text-slate-600 font-medium">SMK Negeri 2 Kuningan</p>
-            <p className="text-slate-500 text-sm">Jl. Pramuka No. 1, Kuningan</p>
+            <p className="text-slate-500 text-sm">Jl. Raya Sukamulya No.77, Sukamulya, Kec. Cigugur, Kab. Kuningan</p>
           </div>
         </div>
       </section>
