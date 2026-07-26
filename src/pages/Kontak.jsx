@@ -43,7 +43,7 @@ export default function Kontak() {
       <section className="section-padding">
         <div className="container-custom mx-auto">
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Info */}
+            {/* Contact Info + Map */}
             <div className="space-y-8">
               <SectionTitle
                 subtitle="Informasi Kontak"
@@ -89,6 +89,20 @@ export default function Kontak() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Map */}
+              <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-100 h-64">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.8211551862632!2d108.45882467454172!3d-6.979647368346872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f15d835804117%3A0xe06ca6e3e0f233dc!2sSMK%20Negeri%202%20Kuningan!5e1!3m2!1sid!2sid!4v1785046954188!5m2!1sid!2sid" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Lokasi SMK Negeri 2 Kuningan"
+                />
               </div>
             </div>
 
@@ -201,20 +215,6 @@ export default function Kontak() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="h-96 bg-slate-200 relative">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.8211551862632!2d108.45882467454172!3d-6.979647368346872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f15d835804117%3A0xe06ca6e3e0f233dc!2sSMK%20Negeri%202%20Kuningan!5e1!3m2!1sid!2sid!4v1785046954188!5m2!1sid!2sid" 
-          width="100%" 
-          height="100%" 
-          style={{ border: 0 }} 
-          allowFullScreen="" 
-          loading="lazy" 
-          referrerPolicy="strict-origin-when-cross-origin"
-          title="Lokasi SMK Negeri 2 Kuningan"
-        />
       </section>
     </>
   )
