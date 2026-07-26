@@ -21,17 +21,34 @@ const demoData = {
 // Store demo data in memory
 let localData = { ...demoData }
 
+// Sort guru by jabatan priority
+export function sortGuruByJabatan(list) {
+  const priority = [
+    'kepala program keahlian',
+    'kepala lab tjkt',
+    'guru produktif tjkt',
+    'guru produktif',
+  ]
+  return [...list].sort((a, b) => {
+    const aIdx = priority.findIndex(p => (a.jabatan || '').toLowerCase().includes(p))
+    const bIdx = priority.findIndex(p => (b.jabatan || '').toLowerCase().includes(p))
+    const aScore = aIdx === -1 ? 99 : aIdx
+    const bScore = bIdx === -1 ? 99 : bIdx
+    return aScore - bScore
+  })
+}
+
 // ============ GURU SERVICES ============
 export const guruService = {
   async getAll() {
     if (!isSupabaseConfigured()) {
-      return { data: localData.guru, error: null }
+      return { data: sortGuruByJabatan(localData.guru), error: null }
     }
     const { data, error } = await supabase
       .from('guru')
       .select('*')
       .order('created_at', { ascending: false })
-    return { data, error }
+    return { data: sortGuruByJabatan(data || []), error }
   },
 
   async getById(id) {
