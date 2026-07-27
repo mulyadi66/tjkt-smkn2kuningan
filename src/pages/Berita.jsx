@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Calendar, Tag, ArrowRight, Clock, Newspaper } from 'lucide-react'
+import { Calendar, Tag, ArrowRight, Clock, Newspaper, X } from 'lucide-react'
 import SectionTitle from '../components/SectionTitle'
 import { beritaService } from '../services/api'
 import { getGoogleDriveImageUrl } from '../utils/helpers'
@@ -8,6 +8,7 @@ export default function Berita() {
   const [beritaList, setBeritaList] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('Semua')
+  const [selectedBerita, setSelectedBerita] = useState(null)
 
   useEffect(() => {
     loadBerita()
@@ -128,7 +129,10 @@ export default function Berita() {
                     <p className="text-slate-600 text-sm line-clamp-3 mb-4">
                       {item.excerpt || item.konten?.substring(0, 150) + '...'}
                     </p>
-                    <button className="text-primary-600 font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all duration-200">
+                    <button 
+                      onClick={() => setSelectedBerita(item)}
+                      className="text-primary-600 font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all duration-200"
+                    >
                       Baca Selengkapnya
                       <ArrowRight className="w-4 h-4" />
                     </button>
@@ -144,6 +148,72 @@ export default function Berita() {
           )}
         </div>
       </section>
+
+      {/* Berita Detail Modal */}
+      {selectedBerita && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setSelectedBerita(null)}>
+          <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            {/* Header Image */}
+            {selectedBerita.gambar_url && (
+              <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                <img 
+                  src={getGoogleDriveImageUrl(selectedBerita.gambar_url)} 
+                  alt={selectedBerita.judul} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-primary-700">
+                    {selectedBerita.kategori}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedBerita(null)}
+              className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-colors"
+              style={{ top: selectedBerita.gambar_url ? '1rem' : '1rem', right: '1rem' }}
+            >
+              <X className="w-5 h-5 text-slate-700" />
+            </button>
+
+            {/* Content */}
+            <div className="p-6 md:p-8">
+              {/* Meta */}
+              <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  <span>{new Date(selectedBerita.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  <span>5 min baca</span>
+                </div>
+              </div>
+
+              {/* Title */}
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-slate-800 mb-4">
+                {selectedBerita.judul}
+              </h2>
+
+              {/* Excerpt */}
+              {selectedBerita.excerpt && (
+                <p className="text-slate-600 text-lg mb-6 italic border-l-4 border-primary-500 pl-4">
+                  {selectedBerita.excerpt}
+                </p>
+              )}
+
+              {/* Konten */}
+              <div className="prose prose-slate max-w-none">
+                <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+                  {selectedBerita.konten || 'Konten tidak tersedia.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
