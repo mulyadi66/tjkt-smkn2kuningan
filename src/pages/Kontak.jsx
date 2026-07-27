@@ -68,7 +68,7 @@ export default function Kontak() {
                   {
                     icon: Mail,
                     title: 'Email',
-                    content: 'tjkt@smkn2kuningan.sch.id',
+                    content: 'tjkt@smkn2-kng.sch.id',
                     sub: 'response@smkn2kuningan.sch.id'
                   },
                   {
