@@ -69,8 +69,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
+
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     linkClass()
                   }`}
@@ -130,8 +129,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
+
                   className="block px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-primary-50 hover:text-primary-600 transition-all duration-200"
                 >
                   {link.name}
