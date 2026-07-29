@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Wifi, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { navLinks } from '../data/siteData'
 
 export default function Navbar() {
@@ -19,6 +19,17 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false)
   }, [location])
+
+  const linkClass = (active = false) => {
+    if (active) {
+      return isScrolled
+        ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30'
+        : 'bg-white/20 text-white'
+    }
+    return isScrolled
+      ? 'text-slate-600 hover:text-primary-600 hover:bg-primary-50'
+      : 'text-white/90 hover:text-white hover:bg-white/10'
+  }
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -54,21 +65,29 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname === link.path
-                    ? isScrolled
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-white/20 text-white'
-                    : isScrolled
-                      ? 'text-slate-600 hover:text-primary-600 hover:bg-primary-50'
-                      : 'text-white/90 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {link.name}
-              </Link>
+              link.path?.startsWith('http') ? (
+                <a
+                  key={link.name}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    linkClass()
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    linkClass(location.pathname === link.path)
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
           </div>
 
@@ -102,22 +121,34 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
         <div className="bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg">
           <div className="container-custom mx-auto px-4 py-4">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname === link.path
-                    ? 'bg-primary-600 text-white'
-                    : 'text-slate-600 hover:bg-primary-50 hover:text-primary-600'
-                }`}
-              >
-                {link.name}
-              </Link>
+              link.path?.startsWith('http') ? (
+                <a
+                  key={link.name}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-primary-50 hover:text-primary-600 transition-all duration-200"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    location.pathname === link.path
+                      ? 'bg-primary-600 text-white'
+                      : 'text-slate-600 hover:bg-primary-50 hover:text-primary-600'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
             <Link
               to="/kontak"

@@ -16,7 +16,8 @@ export const profilData = {
     "Mengembangkan keterampilan teknis sesuai standar kompetensi nasional dan internasional",
     "Membentuk tenaga kerja tingkat menengah yang profesional dan siap pakai"
   ],
-  sejarah: "Jurusan Teknik Jaringan Komputer dan Telekomunikasi (TJKT) SMK Negeri 2 Kuningan didirikan untuk menjawab kebutuhan industri akan tenaga kerja terampil di bidang jaringan komputer dan telekomunikasi. Sejak berdirinya, jurusan ini terus berkomitmen untuk menghasilkan lulusan yang kompeten dan siap bersaing di dunia kerja.",
+  berdiri: 2015,
+  sejarah: "Jurusan Teknik Jaringan Komputer dan Telekomunikasi (TJKT) SMK Negeri 2 Kuningan didirikan pada tahun 2015 untuk menjawab kebutuhan industri akan tenaga kerja terampil di bidang jaringan komputer dan telekomunikasi. Sejak berdirinya, jurusan ini terus berkomitmen untuk menghasilkan lulusan yang kompeten dan siap bersaing di dunia kerja.",
   sarana: [
     "Laboratorium Jaringan Komputer",
     "Laboratorium Server & Cloud",
@@ -240,6 +241,7 @@ export const navLinks = [
   { name: "Beranda", path: "/" },
   { name: "Profil", path: "/profil" },
   { name: "Kompetensi", path: "/kompetensi" },
+  { name: "Mata Pelajaran", path: "https://materi.tjkt-smkn2kuningan.my.id/" },
   { name: "Guru", path: "/guru" },
   { name: "Berita", path: "/berita" },
   { name: "Galeri", path: "/galeri" },

@@ -44,8 +44,8 @@ export default function Profil() {
                     <Building2 className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-slate-800">SMK Negeri 2 Kuningan</h3>
-                    <p className="text-sm text-slate-500">Berdiri sejak 2003</p>
+                    <h3 className="font-heading font-bold text-slate-800">Jurusan TJKT</h3>
+                    <p className="text-sm text-slate-500">Berdiri sejak {profilData.berdiri}</p>
                   </div>
                 </div>
                 <p className="text-slate-600 text-sm">
